@@ -31,4 +31,5 @@
 
 #### 3. Верификация сложных UI-компонентов (Yandex Browser Scroll Execution)
 Успешное выполнение теста на переключение табов и валидацию скроллинга раздела Конструктор в Яндекс.Браузере. Скриншот демонстрирует прохождение теста благодаря инжекции JavaScript-алгоритма `isContainerScrolledToElement` на базе вычисления координат `getBoundingClientRect()`.
+* **Анализ инфраструктурной нестабильности стенда (Root Cause Analysis)**: В ходе headless-прогона в окружении Yandex Browser были зафиксированы два тест-кейса в статусе `Broken` по причине `org.openqa.selenium.TimeoutException: timeout: Timed out receiving message from renderer`. Данный сбой носит исключительно инфраструктурный характер (Flaky Environment) и вызван задержками рендеринга на стороне слабого тестового сервера.
 ![Allure UI Yandex Scroll](allure-ui-yandex-scroll.png)
