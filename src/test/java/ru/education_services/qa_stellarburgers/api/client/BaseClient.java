@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 
 public abstract class BaseClient {
 
-    // это зеркало гораздо стабильнее стенда из ЯП: https://stellarburgers.education-services.ru
+    // менее стабильное зеркало: https://stellarburgers.education-services.ru
     public static final String BASE_URL = System.getProperty("site.url", "https://qa-stellarburgers.education-services.ru");
 
     protected static final RequestSpecification BASE_SPEC = new RequestSpecBuilder()

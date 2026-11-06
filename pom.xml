@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Diplom_3</artifactId>
+    <artifactId>java-ui-testing-burger-selenium-ju4</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Java UI Testing Stellar Burgers Project (Selenium + JUnit 4)</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -98,6 +99,32 @@
 
     <build>
         <plugins>
+            <!-- Автоматическое копирование environment.properties в allure-results -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-allure-environment</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/allure-results</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/resources</directory>
+                                    <includes>
+                                        <include>environment.properties</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Test Runner Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -119,6 +146,10 @@
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
+                        <property>
+                            <name>allure.link.issue.pattern</name>
+                            <value>https://example.com{}</value>
+                        </property>
                     </systemProperties>
                 </configuration>
             </plugin>
@@ -130,6 +161,7 @@
                 <version>${allure.plugin.version}</version>
                 <configuration>
                     <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>
